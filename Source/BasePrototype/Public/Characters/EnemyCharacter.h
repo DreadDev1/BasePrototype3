@@ -13,7 +13,12 @@ class BASEPROTOTYPE_API AEnemyCharacter : public ABaseCharacter, public IHighlig
 	GENERATED_BODY()
 public:
 	AEnemyCharacter();
+
+	/** Highlight Interface Implementation */
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
+	/** Highlight Interface Implementation */
 
+protected:
+	virtual void BeginPlay() override;
 };

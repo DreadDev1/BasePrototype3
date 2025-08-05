@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BaseCharacter.h"
+#include "PlayerCharacter.h"
 #include "TopDownCharacter.generated.h"
 
 UCLASS()
-class BASEPROTOTYPE_API ATopDownCharacter : public ABaseCharacter
+class BASEPROTOTYPE_API ATopDownCharacter : public APlayerCharacter
 {
 	GENERATED_BODY()
 
