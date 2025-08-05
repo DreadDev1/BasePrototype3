@@ -12,6 +12,7 @@ AEnemyCharacter::AEnemyCharacter()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UBaseAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 
 	AttributeSet = CreateDefaultSubobject<UBaseAttributeSet>("AttributeSet");
 }
