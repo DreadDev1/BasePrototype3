@@ -3,12 +3,17 @@
 
 #include "Characters/EnemyCharacter.h"
 
+#include "Game/AbilitySystem/BaseAbilitySystemComponent.h"
+#include "Game/AbilitySystem/Attributes/BaseAttributeSet.h"
 #include "BasePrototype/BasePrototype.h"
 
 
 AEnemyCharacter::AEnemyCharacter()
 {
+	AbilitySystemComponent = CreateDefaultSubobject<UBaseAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
 
+	AttributeSet = CreateDefaultSubobject<UBaseAttributeSet>("AttributeSet");
 }
 
 void AEnemyCharacter::HighlightActor()
