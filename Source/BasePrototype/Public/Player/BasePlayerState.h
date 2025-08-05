@@ -13,4 +13,6 @@ UCLASS()
 class BASEPROTOTYPE_API ABasePlayerState : public APlayerState
 {
 	GENERATED_BODY()
+public:
+	ABasePlayerState();
 };

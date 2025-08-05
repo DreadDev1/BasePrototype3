@@ -2,3 +2,8 @@
 
 
 #include "Player/BasePlayerState.h"
+
+ABasePlayerState::ABasePlayerState()
+{
+	SetNetUpdateFrequency(100.f);
+}
