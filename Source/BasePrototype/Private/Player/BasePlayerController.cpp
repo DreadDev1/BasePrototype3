@@ -26,7 +26,6 @@ void ABasePlayerController::BeginPlay()
 	{
 		for (UInputMappingContext* CurrentContext : DefaultIMCs) { Subsystem->AddMappingContext(CurrentContext, 0); }
 	}
-	CreateHUDWidget();
 }
 
 void ABasePlayerController::SetupInputComponent()
@@ -52,16 +51,6 @@ void ABasePlayerController::ShowPickupMessage()
 void ABasePlayerController::HidePickupMessage()
 {
 	if (IsValid(HUDWidget)) HUDWidget->HidePickupMessage();
-}
-
-void ABasePlayerController::CreateHUDWidget()
-{
-	if (!IsLocalController()) return;
-	HUDWidget = CreateWidget<UBaseUserWidget>(this, HUDWidgetClass);
-	if (IsValid(HUDWidget))
-	{
-		HUDWidget->AddToViewport();
-	}
 }
 
 void ABasePlayerController::Move(const FInputActionValue& InputActionValue)

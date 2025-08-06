@@ -19,6 +19,8 @@ class BASEPROTOTYPE_API ABasePlayerController : public APlayerController
 public:
 	ABasePlayerController();
 	virtual void Tick(float DeltaTime) override;
+	void SetHUDWidget(UBaseUserWidget* Widget) { HUDWidget = Widget; }
+	
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
@@ -34,9 +36,6 @@ protected:
 	TScriptInterface<IHighlightInterface> ThisCharacter;
 	TScriptInterface<IHighlightInterface> LastCharacter;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Base Prototype|Widgets|HUD")
-	TSubclassOf<UBaseUserWidget> HUDWidgetClass;
-
 	UPROPERTY()
 	TObjectPtr<UBaseUserWidget> HUDWidget;
 
@@ -45,7 +44,6 @@ protected:
 	
 private:
 
-	void CreateHUDWidget();
    	UPROPERTY(EditDefaultsOnly, Category = "Base Prototype|Inputs|Input Mapping Context")
    	TArray<TObjectPtr<UInputMappingContext>> DefaultIMCs;
    	
