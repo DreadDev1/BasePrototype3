@@ -5,7 +5,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Items/Components/Inv_ItemComponent.h"
-#include "Widgets/HUD/BaseHUD.h"
+#include "BasePrototype/Public/UI/BaseUserWidget.h"
 
 ABasePlayerController::ABasePlayerController()
 {
@@ -57,7 +57,7 @@ void ABasePlayerController::HidePickupMessage()
 void ABasePlayerController::CreateHUDWidget()
 {
 	if (!IsLocalController()) return;
-	HUDWidget = CreateWidget<UBaseHUD>(this, HUDWidgetClass);
+	HUDWidget = CreateWidget<UBaseUserWidget>(this, HUDWidgetClass);
 	if (IsValid(HUDWidget))
 	{
 		HUDWidget->AddToViewport();

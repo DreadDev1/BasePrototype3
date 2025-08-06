@@ -5,7 +5,7 @@
 
 #include "Interaction/HighlightInterface.h"
 #include "Items/Components/Inv_ItemComponent.h"
-#include "Widgets/HUD/BaseHUD.h"
+#include "BasePrototype/Public/UI/BaseUserWidget.h"
 
 class UInv_ItemComponent;
 

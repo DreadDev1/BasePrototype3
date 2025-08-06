@@ -3,10 +3,10 @@
 
 #include "Player/ThirdPersonController.h"
 #include "EnhancedInputComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Interaction/HighlightInterface.h"
 #include "Items/Components/Inv_ItemComponent.h"
-#include "Kismet/GameplayStatics.h"
-#include "Widgets/HUD/BaseHUD.h"
+#include "BasePrototype/Public/UI/BaseUserWidget.h"
 
 
 AThirdPersonController::AThirdPersonController()

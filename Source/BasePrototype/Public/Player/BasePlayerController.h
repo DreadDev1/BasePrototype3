@@ -9,7 +9,7 @@
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
-class UBaseHUD;
+class UBaseUserWidget;
 class IHighlightInterface;
 
 UCLASS()
@@ -35,10 +35,10 @@ protected:
 	TScriptInterface<IHighlightInterface> LastCharacter;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Base Prototype|Widgets|HUD")
-	TSubclassOf<UBaseHUD> HUDWidgetClass;
+	TSubclassOf<UBaseUserWidget> HUDWidgetClass;
 
 	UPROPERTY()
-	TObjectPtr<UBaseHUD> HUDWidget;
+	TObjectPtr<UBaseUserWidget> HUDWidget;
 
 	void ShowPickupMessage();
 	void HidePickupMessage();
