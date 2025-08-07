@@ -5,20 +5,36 @@
 
 #include "Player/BasePlayerController.h"
 #include "UI/BaseUserWidget.h"
+#include "UI/WidgetControllers/BaseWidgetController.h"
+#include "UI/WidgetControllers/OverlayWidgetController.h"
 
-void ABaseHUD::BeginPlay()
+
+UOverlayWidgetController* ABaseHUD::GetOverlayWidgetController(const FWidgetControllerParams& WCParams)
 {
-	Super::BeginPlay();
-
-	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), OverlayWidgetClass);
-	if (Widget)
+	if (OverlayWidgetController == nullptr)
 	{
-		Widget->AddToViewport();
-		// Cast to your player controller and set the widget reference
-		if (ABasePlayerController* PC = Cast<ABasePlayerController>(GetOwningPlayerController()))
-		{
-			PC->SetHUDWidget(Cast<UBaseUserWidget>(Widget));
-		}
-	}
+		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
+		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 
+		return OverlayWidgetController;
+	}
+	return OverlayWidgetController;
+}
+
+void ABaseHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
+{
+	checkf(OverlayWidgetClass, TEXT("Overlay Widget Class uninitialized, please fill out BP_AuraHUD"));
+	checkf(OverlayWidgetControllerClass, TEXT("Overlay Widget Controller Class uninitialized, please fill out BP_AuraHUD"));
+    
+	OverlayWidget = CreateWidget<UBaseUserWidget>(GetWorld(), OverlayWidgetClass);
+	checkf(OverlayWidget, TEXT("Failed to create OverlayWidget"));
+    
+	const FWidgetControllerParams WidgetControllerParams(PC, PS, ASC, AS);
+	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
+	checkf(WidgetController, TEXT("Failed to create WidgetController"));
+
+	OverlayWidget->SetWidgetController(WidgetController);
+	// Make sure to broadcast initial values if needed
+    
+	OverlayWidget->AddToViewport();
 }

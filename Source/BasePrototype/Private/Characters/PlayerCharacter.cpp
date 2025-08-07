@@ -4,6 +4,8 @@
 #include "Characters/PlayerCharacter.h"
 #include "Player/BasePlayerState.h"
 #include "AbilitySystemComponent.h"
+#include "Player/BasePlayerController.h"
+#include "UI/HUD/BaseHUD.h"
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -33,4 +35,12 @@ void APlayerCharacter::InitAbilityActorInfo()
 	BasePlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(BasePlayerState, this);
 	AbilitySystemComponent = BasePlayerState->GetAbilitySystemComponent();
 	AttributeSet = BasePlayerState->GetAttributeSet();
+
+	if (ABasePlayerController* BasePlayerController = Cast<ABasePlayerController>(GetController()))
+	{
+		if (ABaseHUD* BaseHUD = Cast<ABaseHUD>(BasePlayerController->GetHUD()))
+		{
+			BaseHUD->InitOverlay(BasePlayerController, BasePlayerState, AbilitySystemComponent, AttributeSet);
+		}
+	}
 }

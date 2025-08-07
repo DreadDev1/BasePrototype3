@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "BasePlayerController.generated.h"
 
+class UOverlayWidget;
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
@@ -19,7 +20,6 @@ class BASEPROTOTYPE_API ABasePlayerController : public APlayerController
 public:
 	ABasePlayerController();
 	virtual void Tick(float DeltaTime) override;
-	void SetHUDWidget(UBaseUserWidget* Widget) { HUDWidget = Widget; }
 	
 protected:
 	virtual void BeginPlay() override;
@@ -37,7 +37,7 @@ protected:
 	TScriptInterface<IHighlightInterface> LastCharacter;
 
 	UPROPERTY()
-	TObjectPtr<UBaseUserWidget> HUDWidget;
+	TObjectPtr<UOverlayWidget> HUDWidget;
 
 	void ShowPickupMessage();
 	void HidePickupMessage();

@@ -6,6 +6,8 @@
 #include "EnhancedInputSubsystems.h"
 #include "Items/Components/Inv_ItemComponent.h"
 #include "BasePrototype/Public/UI/BaseUserWidget.h"
+#include "Items/BaseItem.h"
+#include "UI/Overlay/OverlayWidget.h"
 
 ABasePlayerController::ABasePlayerController()
 {
@@ -39,9 +41,9 @@ void ABasePlayerController::SetupInputComponent()
 
 void ABasePlayerController::ShowPickupMessage()
 {
-	if (AActor* ActorItem = Cast<AActor>(ThisItem.GetObject()))
+	if (ABaseItem* BaseItem = Cast<ABaseItem>(ThisItem.GetObject()))
 	{
-		UInv_ItemComponent* ItemComponent = ActorItem->FindComponentByClass<UInv_ItemComponent>();
+		UInv_ItemComponent* ItemComponent = BaseItem->FindComponentByClass<UInv_ItemComponent>();
 		if (!IsValid(ItemComponent)) return;
 
 		if (IsValid(HUDWidget)) HUDWidget->ShowPickupMessage(ItemComponent->GetPickupMessage());
